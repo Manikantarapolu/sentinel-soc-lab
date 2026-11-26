@@ -1,4 +1,4 @@
-# Incident 11: PowerShell IEX command
+# Incident 02: PowerShell IEX command
 
 Detection: Suspicious PowerShell Execution (high). Incident created 25 Nov 2026 at 07:43:02 UTC. Three alerts were grouped into this incident.
 
