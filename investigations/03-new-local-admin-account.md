@@ -1,4 +1,4 @@
-# Incident 12: new local account added to Administrators
+# Incident 03: new local account added to Administrators
 
 Detection: New Local Account and Admin Group Modification (high). Incident created 25 Nov 2026 at 07:45:10 UTC. Four alerts were grouped into this incident.
 
