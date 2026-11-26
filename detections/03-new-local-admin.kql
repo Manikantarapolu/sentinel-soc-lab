@@ -1,0 +1,11 @@
+// Rule: New Local Account and Admin Group Modification
+// Severity: High
+// Tactic: Persistence, T1136.001 Local Account and T1098 Account Manipulation
+// Schedule: every 5 minutes, 15-minute lookback
+// Alerts when the query returns more than 0 rows
+// Entities: Account (SubjectAccount), Host (Computer)
+// 4720 = user account created. 4732 = member added to a security-enabled local group.
+// MemberName is empty for local accounts, so match TargetSid on 4720 with MemberSid on 4732.
+SecurityEvent
+| where EventID == 4720 or (EventID == 4732 and TargetAccount has "Administrators")
+| project TimeGenerated, Computer, EventID, Activity, SubjectAccount, TargetAccount, TargetSid, MemberName, MemberSid

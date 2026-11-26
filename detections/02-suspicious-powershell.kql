@@ -1,0 +1,12 @@
+// Rule: Suspicious PowerShell Execution
+// Severity: High
+// Tactic: Execution, T1059.001 PowerShell
+// Schedule: every 5 minutes, 15-minute lookback
+// Alerts when the query returns more than 0 rows
+// Entities: Account (Account), Host (Computer)
+// Note: has_any matches whole terms. Short forms like -e and -ec are not matched.
+SecurityEvent
+| where EventID == 4688
+| where NewProcessName endswith "powershell.exe"
+| where CommandLine has_any ("IEX", "Invoke-Expression", "-enc", "-EncodedCommand", "FromBase64String", "DownloadString", "Invoke-WebRequest", "Invoke-RestMethod")
+| project TimeGenerated, Computer, Account, CommandLine, ParentProcessName

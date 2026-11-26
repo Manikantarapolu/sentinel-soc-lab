@@ -1,0 +1,10 @@
+// Rule: Multiple Failed Logons
+// Severity: Medium
+// Tactic: Credential Access, T1110 Brute Force
+// Schedule: every 5 minutes, 15-minute lookback
+// Alerts when the query returns more than 0 rows
+// Entities: Account (TargetUserName), Host (Computer), IP (IpAddress)
+SecurityEvent
+| where EventID == 4625
+| summarize FailedAttempts = count(), FirstAttempt = min(TimeGenerated), LastAttempt = max(TimeGenerated) by TargetUserName, Computer, IpAddress
+| where FailedAttempts >= 5
