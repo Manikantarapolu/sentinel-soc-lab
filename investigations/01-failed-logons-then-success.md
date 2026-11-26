@@ -1,4 +1,4 @@
-# Incident 10: failed logons followed by a successful logon
+# Incident 01: failed logons followed by a successful logon
 
 Detection: Multiple Failed Logons (medium). Incident created 25 Nov 2026 at 07:41:05 UTC. Three alerts from overlapping rule runs were grouped into this one incident.
 
